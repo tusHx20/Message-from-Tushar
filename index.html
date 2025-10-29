@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I'm Sorry Akhila</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        text-align: center;
+        transition: background 0.8s ease;
+        background: #ff9eb5;
+        color: #fff;
+    }
+
+    .container {
+        background: rgba(255, 255, 255, 0.12);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        width: 90%;
+        max-width: 500px;
+        display: none;
+    }
+
+    h1, h2, p { margin: 0 0 15px; }
+
+    button {
+        background: #ff4f7a;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        margin-top: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1.1rem;
+    }
+    button:hover {
+        background: #ff265c;
+    }
+
+    .hearts {
+        font-size: 2rem;
+    }
+
+    /* Floating Hearts */
+    .floating-heart {
+        position: fixed;
+        bottom: -50px;
+        color: rgba(255,255,255,0.7);
+        font-size: 1.8rem;
+        animation: floatUp 5s infinite ease-in;
+    }
+    @keyframes floatUp {
+        0% { transform: translateY(0) scale(1); opacity: 1; }
+        100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+    }
+
+    .bounce { animation: bounce 0.5s; }
+    .pulse { animation: pulse 0.6s; }
+
+    @keyframes bounce {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+        100% { transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.15); }
+        100% { transform: scale(1); }
+    }
+</style>
+</head>
+<body>
+
+    <div class="floating-heart">💗</div>
+    <div class="floating-heart" style="left:20%">💗</div>
+    <div class="floating-heart" style="left:40%">💗</div>
+    <div class="floating-heart" style="left:60%">💗</div>
+    <div class="floating-heart" style="left:80%">💗</div>
+
+    <audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-small-hit-in-a-game-2072.mp3"></audio>
+
+    <div id="question1" class="container" style="display:block;">
+        <div class="hearts">💗 💗 💗</div>
+        <h2>Akhu, will you answer a few fun questions? 👀</h2>
+        <button onclick="next('question1', 'question2', '#ffbdd1', this)">Okay 😌</button>
+    </div>
+
+    <div id="question2" class="container">
+        <h2>Still angry at me? 😢</h2>
+        <button class="bounce" onclick="next('question2', 'question3', '#ff8eb3', this)">Tiny bit 😒</button>
+        <button class="bounce" onclick="next('question2', 'question3', '#ff8eb3', this)">Maybe 👀</button>
+    </div>
+
+    <div id="question3" class="container">
+        <h2>Do you miss me... even a liiitttle? 😳</h2>
+        <button class="bounce" onclick="next('question3', 'question4', '#ff6fa0', this)">Maybe a little 🙄</button>
+        <button class="pulse" onclick="next('question3', 'question4', '#ff6fa0', this)">Hmm... yes 😔</button>
+    </div>
+
+    <div id="question4" class="container">
+        <h2>Do you like when I call you Akhu? 🥺💗</h2>
+        <button class="pulse" onclick="next('question4', 'question5', '#ff4f90', this)">I love it 🙈</button>
+        <button class="bounce" onclick="next('question4', 'question5', '#ff4f90', this)">Yes 😌</button>
+    </div>
+
+    <div id="question5" class="container">
+        <h2>Last one... You will forgive me na? 😟</h2>
+        <button class="pulse" onclick="next('question5', 'apology', '#ff2e74', this)">Yes... 💗</button>
+        <button class="bounce" onclick="next('question5', 'apology', '#ff2e74', this)">If you promise 😤</button>
+    </div>
+
+    <div id="apology" class="container">
+        <div class="hearts">💗 💗 💗</div>
+        <h1>I'm Really Sorry, Akhila 😔</h1>
+        <p>
+            I messed up. I said something I should have never said.<br><br>
+            Last night I panicked and spammed your phone because I was scared of losing you.<br><br>
+            It was never your fault. It’s just my anxiety and fear of hurting the person I love.<br><br>
+            Please forgive me. I promise I will be careful and never repeat that mistake again.<br><br>
+            Just talk to me... and I’ll be okay.
+        </p>
+        <button class="pulse" onclick="next('apology', 'final', '#ff1e62', this)">Forgive Me? ❤️</button>
+    </div>
+
+    <div id="final" class="container">
+        <div class="hearts">💗 💗 💗</div>
+        <h1>Thank you for forgiving me, Akhu 💗</h1>
+        <p>You’ll see how happy you make me... forever.</p>
+    </div>
+
+<script>
+function playSound() {
+    document.getElementById('clickSound').play();
+}
+
+function next(current, nextBox, bgColor, button) {
+    playSound();
+    document.getElementById(current).style.display = 'none';
+    document.getElementById(nextBox).style.display = 'block';
+    document.body.style.background = bgColor;
+
+    if(button.classList.contains('bounce')) {
+        button.classList.add('bounce');
+    }
+    if(button.classList.contains('pulse')) {
+        button.classList.add('pulse');
+    }
+}
+</script>
+</body>
+</html>
